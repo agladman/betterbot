@@ -1,6 +1,8 @@
-# TODO: command to download fresh pics and ensure image file size is <= 3145728 bytes
+# TODO: command to download fresh pics and ensure image file size is < 3145728 bytes
 
 """
+fetch photo from https://source.unsplash.com/category/technology/800x600
+
 import os
 print os.stat('somefile.ext').st_size
 
