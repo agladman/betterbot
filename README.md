@@ -1,0 +1,2 @@
+# Betterbot
+A Twitter bot that uses Markov chains to create fake tech news headlines. Built upon my Futuremash project, Betterbot includes improvements to core functionality and the addition of a Django web interface that allows users to vote on the bot's output. This filters out the garbage tweets before they're even sent.
