@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <title>About Futuremash</title>
+    <link rel="stylesheet" href="{% static "assets/css/main.css" %}">
+    <link href="https://fonts.googleapis.com/css?family=Baloo+Thambi|Alike+Angular|Open+Sans" rel="stylesheet">
+</head>
+<body>
+    <header id="header">
+        <nav class="left">
+            <a href="#menu"><span>Menu</span></a>
+        </nav>
+        <h1 class="logo"><a href="/">Futuremash</a></h1>
+        <nav class="right">
+            <a href="http://www.twitter.com/futuremash" class="button alt">Twitter</a>
+        </nav>
+    </header>
+
+    <!-- Menu -->
+    <nav id="menu">
+        <ul class="links">
+            <li><a href="/">Home</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/faq">FAQ</a></li>
+        </ul>
+        <ul class="actions vertical">
+            <li><a href="#" class="button fit">Login</a></li>
+        </ul>
+    </nav>
+
+    <!-- Banner -->
+    <section id="banner">
+        <div>
+            <h2>{{ strapline }}</h2>
+            <p>The bot has written two headlines for you. Click on the one you like best.<br>
+                If you don't like either of them click on the bottom button for a new pair.</p>
+            <p>Every so often the bot will tweet the most popular sentence it can find.<br>
+                The most popular sentence at the moment is:</p>
+            <p><strong>"{{ mostpop.text }}"</strong></p>
+            <ul class="actions">
+                <li><a href="/#one" class="button scrolly">Get Started</a></li>
+            </ul>
+            <p>Or scroll down for more...</p>
+
+        </div>
+    </section>
+
+    <div class="row 200%">
+        <div class="12u">
+            <!-- Stats 'n' That -->
+            <section class="wrapper style1 special">
+                <h2>Stats 'n' That</h2>
+                <p>I like statistics about things I have made. Perhaps you like them too.<br>
+                    No? Well, tough: I'm going to put them here anyway.</p>
+            </section>
+            <section class="wrapper">
+                <div class="inner">
+                    <h2>Selected figures</h2>
+                    <div class="row">
+                        <div class="6u 12u$(small)">
+                            <!-- Left Column -->
+                            <h4>Scraping and Making</h4>
+                            <ul class="alt">
+                                <li>Headlines collected from Reddit: <span class="statsfig">{{ total_basetext }}</span></li>
+                                <li>Headlines being used to make sentences now: <span class="statsfig">{{ active_basetext }}</span></li>
+                                <li>Sentences created: <span class="statsfig">{{ total_sentence }}</span></li>
+                                <li>Sentences being voted on now: <span class="statsfig">{{ active_sentence }}</span></li>
+                            </ul>
+                        </div>
+                        <div class="6u 12u$(small)">
+                            <!-- Right Column -->
+                            <h4>Voting and Tweeting</h4>
+                            <ul class="alt">
+                                <li>Votes cast: <span class="statsfig">{{ total_votes }}</span></li>
+                                <li>Times one sentence was preferred over another: <span class="statsfig">{{ ups_cast }}</span></li>
+                                <li>Times both sentences were rejected: <span class="statsfig">{{ downs_cast }}</span></li>
+                                <li>Tweets sent: <span class="statsfig">{{ number_tweeted }}</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <section class="wrapper">
+        <div class="inner">
+        {% block content %}
+            <div class="row 200%">
+                <div class="12u">
+
+                <h2>Tables</h2>
+                <h4 id="7days">Top 10 sentences over the last 7 days</h4>
+                    <div class="table-wrapper">
+                        <table>
+                            {% for o in 7days %}
+                                <tr>
+                                    <td>{{ o.text }}</td>
+                                </tr>
+                            {% endfor %}
+                        </table>
+                    </div>
+                    <h4 id="new10">Last 10 sentences created</h4>
+                    <div class="table-wrapper">
+                        <table>
+                            {% for o in newest10 %}
+                                <tr>
+                                    <td>{{ o.text }}</td>
+                                </tr>
+                            {% endfor %}
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endblock %}
+    </section>
+
+
+    <!-- Footer -->
+    <footer id="footer">
+        <div class="inner">
+            <h2>Further Input Required?</h2>
+            <ul class="actions">
+                <li><span class="icon fa-twitter"></span> <a href="http://www.twitter.com/agladman">@agladman</a></li>
+                <li><span class="icon fa-github"></span> <a href="https://github.com/agladman">github</a></li>
+            </ul>
+        </div>
+        <div class="copyright">
+            &copy; Futuremash Ltd., a division of Betterbot Enterprises. Design <a href="https://templated.co">TEMPLATED</a>. Images <a href="https://unsplash.com">Unsplash</a>.
+        </div>
+    </footer>
+<!-- Scripts -->
+    <script src="{% static "assets/js/jquery.min.js" %}"></script>
+    <script src="{% static "assets/js/jquery.scrolly.min.js" %}"></script>
+    <script src="{% static "assets/js/skel.min.js" %}"></script>
+    <script src="{% static "assets/js/util.js" %}"></script>
+    <script src="{% static "assets/js/main.js" %}"></script>
+</body>
+</html>

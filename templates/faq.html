@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <title>Futuremash FAQ</title>
+    <link rel="stylesheet" href="{% static "assets/css/main.css" %}">
+    <link href="https://fonts.googleapis.com/css?family=Baloo+Thambi|Alike+Angular|Open+Sans" rel="stylesheet">
+</head>
+<body class="subpage">
+    <header id="header">
+        <nav class="left">
+            <a href="#menu"><span>Menu</span></a>
+        </nav>
+        <h1 class="logo"><a href="/">Futuremash</a></h1>
+        <nav class="right">
+            <a href="http://www.twitter.com/futuremash" class="button alt">Twitter</a>
+        </nav>
+    </header>
+
+    <!-- Menu -->
+    <nav id="menu">
+        <ul class="links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/faq">FAQ</a></li>
+        </ul>
+        <ul class="actions vertical">
+            <a href="http://www.twitter.com/futuremash" class="button alt">Twitter</a>
+        </ul>
+    </nav>
+
+    <header class="align-center">
+        <h1>FAQ</h1>
+        <p>{{ strapline }}</p>
+    </header>
+
+    <section id="main" class="wrapper">
+        <div class="inner">
+            <div class="row">
+
+                <!-- Questions -->
+                <div class="4u 12u$(medium)">
+                    <h3>Who made this?</h3>
+                    <p>My name is Anthony. I like coding in Python. I don't have a background in coding or development so have had to learn everything myself. As you might imagine, it involved a lot of trips to Google and Stack Overflow.</p>
+                </div>
+
+                <div class="4u 12u$(medium)">
+                    <h3>Why?</h3>
+                    <p>I broke my arm and had a lot of time on my hands. Well, hand. I needed a project, and was interested to see how Django, PostgreSQL and Heroku work. By the way, yes I really have typed this all with one hand.</p>
+                </div>
+
+                <div class="4u 12u$(medium)">
+                    <h3>How does it work?</h3>
+                    <p>The bot collects headlines from selected tech-related subreddits and uses these to build markov chains. These are fed to the homepage here for voting on. Every so often the bot pulls the most popular sentence from the pool and tweets it.</p>
+               </div>
+
+                <div class="4u 12u$(medium)">
+                    <h3>Why are some sentences so bad?</h3>
+                    <p>They are 100% automatically generated. The bot knows how to form a sentence (sort of) but doesn't understand the idea of making sense. Also until it's collected enough input sentences thing may be a little janky.</p>
+                </div>
+
+                <div class="4u 12u$(medium)">
+                    <h3>Can I see the code?</h3>
+                    <p>Yes, it'll be on github very soon. There's a link in the footer of each page. Or, if you really can't be arsed to scroll down, you could try <a href="http://rickrollomatic.com/">clicking here</a>, although I wouldn't necessarily advise it.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <footer id="footer">
+        <div class="inner">
+            <h2>Further Input Required?</h2>
+            <ul class="actions">
+                <li><span class="icon fa-twitter"></span> <a href="http://www.twitter.com/agladman">@agladman</a></li>
+                <li><span class="icon fa-github"></span> <a href="https://github.com/agladman">github</a></li>
+            </ul>
+        </div>
+        <div class="copyright">
+            &copy; Futuremash Ltd., a division of Betterbot Enterprises. Design <a href="https://templated.co">TEMPLATED</a>. Images <a href="https://unsplash.com">Unsplash</a>.
+        </div>
+    </footer>
+    <!-- Scripts -->
+        <script src="{% static "assets/js/jquery.min.js" %}"></script>
+        <script src="{% static "assets/js/jquery.scrolly.min.js" %}"></script>
+        <script src="{% static "assets/js/skel.min.js" %}"></script>
+        <script src="{% static "assets/js/util.js" %}"></script>
+        <script src="{% static "assets/js/main.js" %}"></script>
+
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <title>Futuremash</title>
+    <link rel="stylesheet" href="{% static "assets/css/main.css" %}">
+    <link href="https://fonts.googleapis.com/css?family=Baloo+Thambi|Alike+Angular|Open+Sans" rel="stylesheet">
+</head>
+<body>
+<header id="header">
+    <nav class="left">
+        <a href="#menu"><span>Menu</span></a>
+    </nav>
+    <h1 class="logo">Futuremash</h1>
+    <nav class="right">
+        <a href="http://www.twitter.com/futuremash" class="button alt">Twitter</a>
+    </nav>
+</header>
+
+<!-- Menu -->
+<nav id="menu">
+    <ul class="links">
+            <li><a href="/">Home</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/faq">FAQ</a></li>
+    </ul>
+    <ul class="actions vertical">
+        <li><a href="#" class="button fit">Login</a></li>
+    </ul>
+</nav>
+
+<section id="banner">
+    <div id="one" class="content">
+    <h1>{{ strapline }}</h1>
+    <h3>Click the headline you like best:</h3>
+        <form class="inline" action="." method="post">{% csrf_token %}
+            <input type="hidden" name="chosen" value="0">
+            <input type="hidden" name="candidate1" value="{{ candidate1.id }}">
+            <input type="hidden" name="candidate2" value="{{ candidate2.id }}">
+                <button class="button bigchoice" type="submit">{{ candidate1.text }}</button>
+        </form>
+        <form class="inline" action="." method="post">{% csrf_token %}
+            <input type="hidden" name="chosen" value="1">
+            <input type="hidden" name="candidate1" value="{{ candidate1.id }}">
+            <input type="hidden" name="candidate2" value="{{ candidate2.id }}">
+                <button class="button bigchoice" type="submit">{{ candidate2.text }}</button>
+        </form>
+        <form class="inline" action="." method="post">{% csrf_token %}
+            <input type="hidden" name="chosen" value="2">
+            <input type="hidden" name="candidate1" value="{{ candidate1.id }}">
+            <input type="hidden" name="candidate2" value="{{ candidate2.id }}">
+                <button type="submit">{{ dismissal }}</button>
+        </form>
+    </div>
+</section>
+    <footer id="footer">
+        <div class="inner">
+            <h2>Further Input Required?</h2>
+            <ul class="actions">
+                <li><span class="icon fa-twitter"></span> <a href="http://www.twitter.com/agladman">@agladman</a></li>
+                <li><span class="icon fa-github"></span> <a href="https://github.com/agladman">github</a></li>
+            </ul>
+        </div>
+        <div class="copyright">
+            &copy; Futuremash Ltd., a division of Betterbot Enterprises. Design <a href="https://templated.co">TEMPLATED</a>. Images <a href="https://unsplash.com">Unsplash</a>.
+        </div>
+    </footer>
+<!-- Scripts -->
+    <script src="{% static "assets/js/jquery.min.js" %}"></script>
+    <script src="{% static "assets/js/jquery.scrolly.min.js" %}"></script>
+    <script src="{% static "assets/js/skel.min.js" %}"></script>
+    <script src="{% static "assets/js/util.js" %}"></script>
+    <script src="{% static "assets/js/main.js" %}"></script>
+</body>
+</html>
