@@ -1,14 +1,24 @@
-# TODO: command to download fresh pics and ensure image file size is < 3145728 bytes
+from django.core.management.base import BaseCommand
 
-"""
-fetch photo from https://source.unsplash.com/category/technology/800x600
+from requests import HTTPError
 
-import os
-print os.stat('somefile.ext').st_size
+from corpus.utils import fetch_image
 
-OR
 
-import os
-os.path.getsize('path_to_file.jpg')`
+class Command(BaseCommand):
+    help = 'Fetches one or more images from unsplash.com.'
 
-"""
+    def add_arguments(self, parser):
+        parser.add_argument('num_arg', type=int)
+
+    def handle(self, *args, **options):
+            num = options['num_arg'] or 1
+            self.stdout.write('fetching images')
+            fetched = 0
+            for i in range(num):
+                try:
+                    if fetch_image() is True:
+                        fetched += 1
+                except HTTPError as e:
+                    self.stdout.write(f'error fetching image: {e.response.status_code}')
+            self.stdout.write(f'images fetched: {fetched}')
