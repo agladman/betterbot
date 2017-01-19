@@ -1,7 +1,8 @@
 from django.db import models
 from datetime import timedelta
 from django.utils import timezone
-from django.db import IntegrityError
+from django.db import IntegrityError as IntegError1
+from psycopg2 import IntegrityError as IntegError2
 
 from betterbot.settings import CONFIG, TEXT_MODEL_JSON_FILE
 from corpus import querysets
@@ -59,10 +60,11 @@ class Sentence(models.Model):
         s = None
         while not s:
             try:
-                s = s = cls(text=text_model.make_short_sentence(CONFIG['limits']['tweet_max_length']))
+                s = cls(text=text_model.make_short_sentence(CONFIG['limits']['tweet_max_length']))
                 s.save()
-            except IntegrityError:
-                pass
+                break
+            except (IntegError1, IntegError2):
+                continue
         return s
 
     def set_score(self):
