@@ -22,10 +22,10 @@ class HomeView(View):
         else:
             candidate1, candidate2 = sample(pool, 2)
 
-        # but if the pool is still small create a new candidate
-        # in order to keep growing the pool to the desired size
-        if len(pool) < CONFIG['limits']['candidate_pool_min_size']:
-            candidate2 = Sentence.create()
+            # but if the pool is still small create a new candidate
+            # in order to keep growing the pool to the desired size
+            if len(pool) < CONFIG['limits']['candidate_pool_min_size']:
+                candidate2 = Sentence.create()
 
         ctx = {
             'strapline': choice(CONFIG['straplines']),
