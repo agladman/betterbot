@@ -4,11 +4,16 @@ from django.utils import timezone
 from django.db import IntegrityError as IntegError1
 from psycopg2 import IntegrityError as IntegError2
 
-from betterbot.settings import CONFIG, TEXT_MODEL_JSON_FILE
+from betterbot.settings import CONFIG, LOGCONFIG, TEXT_MODEL_JSON_FILE
 from corpus import querysets
 from corpus.utils import POSifiedText
 
 import json
+import logging.config
+
+
+logging.config.dictConfig(LOGCONFIG)
+logger = logging.getLogger(__name__)
 
 
 class BaseText(models.Model):
@@ -62,8 +67,10 @@ class Sentence(models.Model):
             try:
                 s = cls(text=text_model.make_short_sentence(CONFIG['limits']['tweet_max_length']))
                 s.save()
+                logger.debug(f'sentence created: {s.text}')
                 break
-            except (IntegError1, IntegError2):
+            except (IntegError1, IntegError2) as e:
+                logger.exception(f'exception while creating sentence: {e}')
                 continue
         return s
 

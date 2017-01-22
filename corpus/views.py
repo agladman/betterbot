@@ -6,7 +6,12 @@ from django.db.models import Count, Min, Sum, Avg
 from .models import BaseText, Sentence
 
 from random import choice, sample
-from betterbot.settings import CONFIG
+from betterbot.settings import CONFIG, LOGCONFIG
+import logging.config
+
+
+logging.config.dictConfig(LOGCONFIG)
+logger = logging.getLogger(__name__)
 
 
 class HomeView(View):
@@ -16,16 +21,20 @@ class HomeView(View):
         if len(pool) == 0:
             candidate1 = Sentence.create()
             candidate2 = Sentence.create()
+            logger.debug('created 2 new sentences')
         elif len(pool) == 1:
             candidate1 = Sentence.create()
             candidate2 = pool[0]
+            logger.debug('created 1 new sentence and used 1 existing sentence')
         else:
             candidate1, candidate2 = sample(pool, 2)
-
+            logger.debug('retrieved 2 sentences from pool')
             # but if the pool is still small create a new candidate
             # in order to keep growing the pool to the desired size
             if len(pool) < CONFIG['limits']['candidate_pool_min_size']:
+                logger.debug('pool still too small...')
                 candidate2 = Sentence.create()
+                logger.debug('created 1 new sentence')
 
         ctx = {
             'strapline': choice(CONFIG['straplines']),
@@ -33,6 +42,7 @@ class HomeView(View):
             'candidate2': candidate2,
             'dismissal': choice(CONFIG['dismissals'])
         }
+        # logger.debug(f'context passed to template: {ctx}')
 
         return render(request, template_name='index.html', context=ctx)
 
