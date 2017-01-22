@@ -71,6 +71,7 @@ class Sentence(models.Model):
                 break
             except (IntegError1, IntegError2) as e:
                 logger.exception(f'exception while creating sentence: {e}')
+                s = None
                 continue
         return s
 
