@@ -61,7 +61,7 @@ class Sentence(models.Model):
             text_model = POSifiedText.from_json(model_data)
         else:
             basetext = '\n'.join([x.text_str for x in BaseText.objects.all() if x.check_age()])
-            text_model = POSifiedText(basetext, state_size=2)
+            text_model = POSifiedText(basetext)     # removed state_size=2
         s = None
         while not s:
             try:
